@@ -113,4 +113,95 @@ window.addEventListener("DOMContentLoaded", function(){
     });
 }
 
+    // Form + FormData + main-form
+
+    /* let massage = {
+        loading: "Loading...",
+        success: "Thank you! We will call you soon.",
+        failure: "Somthing wrong..."
+    };
+
+    let form = document.querySelector(".main-form"),
+        input = form.getElementsByTagName("input"),
+        statusMessage = document.createElement("div");
+
+        statusMessage.classList.add("status");
+
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
+            form.appendChild(statusMessage);
+
+            let request = new XMLHttpRequest();
+            request.open("POST", "server.php");
+            request.setRequestHeader("Content-Type", "aplication/x-www-form-urlencoded");
+            
+            let formData = new FormData(form);
+            request.send(formData);
+            request.addEventListener("readystatechange", function(){
+                if(request.readyState <4){
+                    statusMessage.innerHTML = massage.loading;
+                } else if(request.readyState ===4 && request.status == 200){
+                    statusMessage.innerHTML = massage.success;
+                } else {
+                    statusMessage.innerHTML = massage.failure;
+                }
+            });
+
+            for (let i=0; i<input.length; i++){
+                input[i].value = "";
+            }
+
+        }); */
+
+        //Form + JSON
+        let massage = {
+            loading: "Loading...",
+            success: "Thank you! We will call you soon.",
+            failure: "Somthing wrong..."
+        };
+    
+        let form = document.querySelectorAll(".main-form, #form");
+            
+        for(let i=0; i<form.length; i++){
+        
+        let input = form[i].getElementsByTagName("input"),
+            statusMessage = document.createElement("div");
+    
+            statusMessage.classList.add("status");
+    
+            form[i].addEventListener("submit", function(event){
+                event.preventDefault();
+                form[i].appendChild(statusMessage);
+    
+                let request = new XMLHttpRequest();
+                request.open("POST", "server.php");
+                request.setRequestHeader("Content-Type", "aplication/json; charset=utf-8");
+                
+                let formData = new FormData(form[i]);
+                        //FormData to obj to JSON
+                let obj ={};
+                formData.forEach(function(value, key){
+                    obj[key] = value;
+                });
+
+                let json = JSON.stringify(obj);
+
+                request.send(json);
+                request.addEventListener("readystatechange", function(){
+                    if(request.readyState <4){
+                        statusMessage.innerHTML = massage.loading;
+                    } else if(request.readyState ===4 && request.status == 200){
+                        statusMessage.innerHTML = massage.success;
+                    } else {
+                        statusMessage.innerHTML = massage.failure;
+                    }
+                });
+    
+                for (let i=0; i<input.length; i++){
+                    input[i].value = "";
+                }
+    
+            });
+        }
+
 });
