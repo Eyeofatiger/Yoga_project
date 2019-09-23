@@ -215,17 +215,17 @@ window.addEventListener("DOMContentLoaded", function(){
         
         function showSlides(n){
 
-            if(n>slides.length){
+            if(n > slides.length){
                 slideIndex=1;
             }
-            if(n<1){
+            if(n < 1){
                 slideIndex = slides.length;
             }
 
-            slides.forEach((item) => item.style.display = "none");
-            dots.forEach((dot)=>dot.classList.remove("dot-active"));
+            slides.forEach((item) => item.style.display ="none");
+            dots.forEach((dots) => dots.classList.remove("dot-active"));
 
-            slides[slideIndex-1].style.display = "block";
+            slides[slideIndex-1].style.display ="block";
             dots[slideIndex-1].classList.add("dot-active");
         }
 
