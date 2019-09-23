@@ -213,6 +213,10 @@ window.addEventListener("DOMContentLoaded", function(){
             dotsWrap = document.querySelector(".slider-dots"),
             dots = document.querySelectorAll(".dot");
         
+        for (let i = 1; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+            }
+
         function showSlides(n){
 
             if(n > slides.length){
